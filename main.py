@@ -361,8 +361,8 @@ class AddEscritorHandler(webapp2.RequestHandler):
 
 
     def post(self):
-        nome = self.request.get("nome").capitalize()
-        apelidos = self.request.get("apelidos").capitalize()
+        nome = self.request.get("nome")
+        apelidos = self.request.get("apelidos")
         escritores = Escritor.query(Escritor.nome == nome and Escritor.apelidos == apelidos)
 
         if escritores.count() == 0:
