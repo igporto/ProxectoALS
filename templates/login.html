@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+
+{% block saudo %}
+
+        {% if not usuario %}
+        <div class="jumbotron">
+            <h1>Benvido a UvigoReader</h1>
+            <p>A nova páxina de Universidade de Vigo para xestión de Libros</p>
+
+            <p style="color: #9f191f">
+                <br>
+                Para acceder a contido é preciso Iniciar Sesión
+            </p>
+            <p>
+                <a href="{{user_login}}" class="btn btn-primary btn-lg" role="button"><i class="fa fa-sign-in"></i>   Iniciar Sesión</a>
+            </p>
+        </div>
+
+        {% endif %}
+{% endblock %}
+

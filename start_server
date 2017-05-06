@@ -1,0 +1,2 @@
+/home/ivan/Descargas/google_appengine/dev_appserver.py --datastore_path=/home/ivan/ProxectoALS/uvigoReader.datastore --blobstore_path=/home/ivan/ProxectoALS/blobs /home/ivan/ProxectoALS/
+

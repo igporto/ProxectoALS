@@ -1,0 +1,54 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+    <div class="col-lg-6">
+        <h1 align="center">Engadir Libro</h1>
+        <form role="form" method="post" action="/addLibro"  enctype="multipart/form-data">
+
+
+            <div class="form-group">
+                <label>Titulo</label>
+                <input class="form-control" required name="titulo">
+            </div>
+
+            <div class="form-group">
+                <label>Xénero</label>
+                <select class="form-control" required name="xenero">
+                    <option>Terror</option>
+                    <option>Ciencia Ficción</option>
+                    <option>Romántico</option>
+                    <option>Erótico</option>
+                    <option>Detectivesco</option>
+                    <option>Histórico</option>
+                    <option>Non Ficción</option>
+                    <option>Biográfico</option>
+                    <option>Autoaxuda</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Autor</label>
+                <select class="form-control" name="autor">
+                    {% for escritor in escritores %}
+                        <option value={{ escritor.key.id() }}>{{ "%s, %s"|format(escritor.apelidos, escritor.nome) }}</option>
+                    {% endfor%}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Portada</label>
+                <input type="file" required name="portada"/>
+            </div>
+
+            <div class="form-group">
+                <label>Sinopse</label>
+                <textarea class="form-control" rows="3" name="sinopse"></textarea>
+            </div>
+
+            <button class="btn btn-lg btn-success" type="submit" name="enviar" value="">Enviar</button>
+        </form>
+
+    </div>
+
+{% endblock %}

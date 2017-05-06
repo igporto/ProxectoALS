@@ -1,0 +1,161 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <div class="col-lg-6">
+        <h1 class="text-center">{{ libro.titulo }}</h1>
+        <table class="table table-hover table-striped">
+          <tr>
+              <th>Xénero</th>
+              <th>Autor</th>
+          </tr>
+
+          <tr>
+            <td>{{ libro.xenero }}</td>
+            <td>{{ "%s, %s"|format(escritor.apelidos, escritor.nome) }}</td>
+          </tr>
+
+        </table>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-file-text yellow"></i> Sinopse</h3>
+            </div>
+            <div class="panel-body">
+                {{ libro.sinopse }}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 panel-heading">
+        <label>Valoración</label>
+        <br>
+        {% if libro.valoracion == 0 %}
+            <span class="fa-stack fa-3x">
+            <i class="fa fa-star fa-stack-1x yellow">Sen Valoración</i>
+        </span>
+        {% else %}
+        <span class="fa-stack fa-5x">
+            <i class="fa fa-star fa-stack-1x yellow">{{ libro.valoracion }}</i>
+        </span>
+        {% endif%}
+    </div>
+    <div class="col-lg-3">
+        <img src="data:image/png;base64,{{libro.portada.encode('base64')}}" width="60%" height="60%" border=""/>
+    </div>
+    <div class="col-lg-12">
+        <h2 class="text-center">Comentarios</h2>
+        {% for comentario in comentarios %}
+        <div class="col-lg-6">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    {% for usu in usuarios %}
+                        <h3 class="panel-title">
+                            {% if usu.id_user == comentario.usuario.id() %}
+                                <label>{{ usu.name }}</label>
+
+                                <span class="fa-stack fa-2x">
+                                    <i class="fa fa-star fa-stack-2x"></i>
+                                    <strong class="fa-stack-1x fa-stack-text fa-inverse">{{ comentario.valoracion }}</strong>
+                                </span>
+
+                                {{ comentario.data.date() }}
+                            {% endif %}
+                            {% if usuarioActual == usu.id_user %}
+                            <button type="button" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editComentario{{comentario.key.id()}}">
+                                <i class="fa fa-fw fa-edit"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteComentario{{comentario.key.id()}}">
+                                <i class="fa fa-fw fa-trash"></i>
+                            </button>
+
+                        </h3>
+                            <!-- Modal Editar-->
+                        <div class="modal fade" id="editComentario{{comentario.key.id()}}" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Editar Comentario</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form role="form" action="/editComentario" method="post">
+                                            <input type="hidden" name="id" value="{{comentario.key.id()}}"/>
+                                            <label>Comentario</label>
+                                            <div class="form-group">
+                                                <textarea name="comentario"  rows="4" cols="40">{{ comentario.texto }}</textarea>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-fw fa-arrow-left"></i></button>
+                                                <button class="btn btn-lg btn-warning align-left" type="submit" name="enviar">Editar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal Eliminar-->
+                        <div class="modal fade" id="deleteComentario{{comentario.key.id()}}" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Eliminar Comentario</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Desexa Eliminar este Comentario?</p>
+                                        <form role="form" action="/deleteComentario" method="post">
+                                            <input type="hidden" name="id" value="{{comentario.key.id()}}"/>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-fw fa-arrow-left"></i></button>
+                                               <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor%}
+                </div>
+
+                <div class="panel-body container-fluid">
+                       {{ comentario.texto }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="col-lg-12">
+            <form role="form" action="/rateLibro" method="post">
+                <input type="hidden" name="id" value="{{libro.key.id()}}">
+                <h3>Deixa aquí o teu Comentario</h3>
+                <div class="col-lg-4">
+
+                    <label>Comentario</label>
+                    <div class="form-group">
+                        <textarea name="comentario" id="editor1" rows="4" cols="40">
+
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+
+                        <button class="btn btn-lg btn-success align-left" type="submit" name="enviar"">Comentar</button>
+                    </div>
+                </div>
+                <div class="col-lg-1 ">
+                </div>
+                <div class="col-lg-3 ">
+                    <label class="JustifyRight">Valoracion</label>
+                    <div class="form-group">
+                        <span class="fa-stack fa-1x">
+                            <i class="fa fa-star fa-stack-2x yellow"></i>
+                            <strong class="fa-stack-1x fa-stack-text fa-inverse"></strong>
+                        </span>
+                        <input name="valoracion" type="number" class="rating" min=1 max=5 step=1 data-size="lg" data-rtl="true" value="5">
+                         <p>1 - 5</p>
+                     </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

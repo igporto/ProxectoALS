@@ -1,0 +1,32 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+    <div class="col-lg-6">
+        <h1 align="center">Engadir Escritor</h1>
+        <form role="form" action="/addEscritor" method="post">
+
+
+            <div class="form-group">
+                <label>Nome*</label>
+                <input class="form-control" required name="nome">
+            </div>
+            <div class="form-group">
+                <label>Apelidos*</label>
+                <input class="form-control" required name="apelidos">
+            </div>
+            <div class="form-group">
+                <label>Web Persoal</label>
+                <input class="form-control" name="web">
+            </div>
+            <div class="form-group">
+                <label>Entrada Wikipedia</label>
+                <input class="form-control" name="wiki">
+            </div>
+
+            <button class="btn btn-lg btn-success" type="submit" name="enviar" value="">Enviar</button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

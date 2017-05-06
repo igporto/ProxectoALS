@@ -1,0 +1,65 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <div class="col-lg-6">
+        <h1 align="center">Editar Libro</h1>
+
+       <form role="form" method="post" action="/editLibro"  enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{{libro.key.id()}}">
+            <div class="form-group">
+                <label>Titulo</label>
+                {% macro input( value=libro.titulo) %}
+                     <input class="form-control" required name="titulo" value="{{
+                        value|e }}" >
+                {%- endmacro %}
+                {{ input()}}
+            </div>
+
+            <div class="form-group">
+                <label>Xénero</label>
+                <select class="form-control" required name="xenero">
+                    <option>Terror</option>
+                    <option>Ciencia Ficción</option>
+                    <option>Romántico</option>
+                    <option>Erótico</option>
+                    <option>Detectivesco</option>
+                    <option>Histórico</option>
+                    <option>Non Ficción</option>
+                    <option>Biográfico</option>
+                    <option>Autoaxuda</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Autor</label>
+                <select class="form-control" name="autor">
+                    {% for escritor in escritores  %}
+                            {% if  libro.autor.id() == escritor.key.id() %}
+                                <option value={{escritor.key.id()}} selected="selected" > {{ "%s, %s"|format(escritor.apelidos, escritor.nome) }}</option>
+                            {% else %}
+                                <option value={{escritor.key.id()}}>{{ "%s, %s"|format(escritor.apelidos, escritor.nome) }}</option>
+                            {% endif %}
+                    {% endfor%}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Sinopse</label>
+                <textarea name="sinopse" class="form-control" rows="3" >{{libro.sinopse}}</textarea>
+            </div>
+
+
+           <div class="form-group">
+                <label>Portada</label>
+                <input type="file" name="portada"/>
+            </div>
+
+            <button class="btn btn-lg btn-success" type="submit" name="enviar">Enviar</button>
+        </form>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+            <img src="data:image/png;base64,{{libro.portada.encode('base64')}}" width="60%" height="60%" border=""/>
+        </div>
+    </div>
+{% endblock %}

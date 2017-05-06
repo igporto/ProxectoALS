@@ -1,0 +1,109 @@
+{% extends "main.html" %}
+
+{% block content %}
+    {% if add  %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <i class="fa fa-info-circle"></i>  <strong>Novo Libro Engadido Correctamente!!</strong>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if delete %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <i class="fa fa-info-circle"></i>  <strong>Libro Borrado Correctamente!!</strong>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="col-lg-12 col-md-8">
+        <div>
+            <h2>LIBROS</h2>
+            <table class="table table-hover table-striped" id="example" cellspacing="0" width="95%">
+                <thead>
+                    <tr>
+                        <th class="text-center">Titulo</th>
+                        <th class="text-center">Xenero</th>
+                        <th class="text-center">Autor</th>
+                        <th class="text-center"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for libro in libros %}
+                    <tr>
+                        <td>{{ libro.titulo }}</td>
+                        <td>{{ libro.xenero }}</td>
+                        {% for escritor in escritores %}
+                            {% if escritor.key.id() == libro.autor.id() %}
+                                <td>{{ "%s, %s"|format(escritor.apelidos, escritor.nome) }}</td>
+                            {% endif %}
+                        {% endfor %}
+                        <td>
+                            {% if escritores %}
+                            <a href="/editLibro?id={{ libro.key.id() }}">
+                                <button type="button" class="btn btn-xs btn-warning"><i class="fa fa-fw fa-edit"></i></button>
+                            </a>
+                            {% else %}
+                            <a href="/editLibro?id={{ libro.key.id() }}">
+                                <button type="button" class="btn btn-xs btn-warning" disabled="disabled"><i class="fa fa-fw fa-edit"></i></button>
+                            </a>
+                            {% endif %}
+                            <a href="/rateLibro?id={{ libro.key.id() }}">
+                                <button type="button" class="btn btn-xs btn-info"><i class="fa fa-fw fa-comment"></i></button>
+                            </a>
+                            <!--MODAL                            !-->
+                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteLibro{{libro.key.id()}}"><i class="fa fa-fw fa-trash"></i></button>
+
+                            <!-- Modal Eliminar-->
+                            <div class="modal fade" id="deleteLibro{{libro.key.id()}}" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Eliminar Libro</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Desexa Eliminar este Libro?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-fw fa-arrow-left"></i></button>
+                                            <a href="/deleteLibro?id={{libro.key.id()}}"><button type="button" class="btn btn-danger">Eliminar</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+		</div>
+
+        <script type="text/javascript">
+            // For demo to fit into DataTables site builder...
+            $('#example')
+                .removeClass( 'display' )
+                .addClass('table table-striped table-bordered');
+        </script>
+
+        {% if escritores.count() > 0 %}
+            <a href="/addLibro"><button type="button" class="btn btn-lg btn-success">Engadir Libro</button></a>
+        {% else %}
+            <a href="/addLibro"><button type="button" class="btn btn-lg btn-success" disabled="disabled">Engadir Libro</button></a>
+        {% endif %}
+        <p style="color: #9f191f">
+        *Para Editar ou Engadir novos Libros é necesario que haxa Escritores dados de alta
+        </p>
+    </div>
+
+
+
+{% endblock %}

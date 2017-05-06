@@ -1,0 +1,83 @@
+{% extends "main.html" %}
+
+{% block content %}
+    {% if add  %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <i class="fa fa-info-circle"></i>  <strong>Novo Escritor Engadido Correctamente!!</strong>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if delete %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <i class="fa fa-info-circle"></i>  <strong>Escritor Borrado Correctamente!!</strong>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="col-lg-12 col-md-8">
+         <div>
+             <h2>ESCRITORES</h2>
+            <table class="table table-hover table-striped" id="example" cellspacing="0" width="95%">
+                <thead>
+                    <tr>
+                        <th class="text-center">Apelidos</th>
+                        <th class="text-center">Nome</th>
+                        <th class="text-center">Web Persoal</th>
+                        <th class="text-center"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for escritor in escritores %}
+                    <tr>
+                        <td>{{ escritor.apelidos }} </td>
+                        <td>{{ escritor.nome }}</td>
+                        <td>{{ escritor.webPersoal}}</td>
+                        <td class="text-center">
+                            <a href="/editEscritor?id={{escritor.key.id() }}">
+                                <button type="button" class="btn btn-xs btn-warning"><i class="fa fa-fw fa-edit"></i></button>
+                            </a>
+                            <!--MODAL!-->
+                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteEscritor{{escritor.key.id()}}"><i class="fa fa-fw fa-trash"></i></button>
+
+                            <!-- Modal Eliminar-->
+                            <div class="modal fade" id="deleteEscritor{{escritor.key.id()}}" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Eliminar Escritor</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Desexa Eliminar este Escritor e todos os seus libros?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-fw fa-arrow-left"></i></button>
+                                            <a href="/deleteEscritor?id={{escritor.key.id()}}"><button type="button" class="btn btn-danger">Eliminar</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+		</div>
+        <script type="text/javascript">
+            // For demo to fit into DataTables site builder...
+            $('#example')
+                .removeClass( 'display' )
+                .addClass('table table-striped table-bordered');
+        </script>
+        <a href="/addEscritor"><button type="button" class="btn btn-lg btn-success">Engadir Escritor</button></a>
+    </div>
+{% endblock %}
