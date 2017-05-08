@@ -2,15 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b5605d4-177c-48c7-bef6-d1640ef607c2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/favicon.ico" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/LogoUVigo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uvigoReader.datastore" afterPath="$PROJECT_DIR$/uvigoReader.datastore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.yaml" afterPath="$PROJECT_DIR$/app.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/escritores.html" afterPath="$PROJECT_DIR$/templates/escritores.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/libros.html" afterPath="$PROJECT_DIR$/templates/libros.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main.html" afterPath="$PROJECT_DIR$/templates/main.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rateLibro.html" afterPath="$PROJECT_DIR$/templates/rateLibro.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,10 +28,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="-611">
               <caret line="321" column="67" lean-forward="false" selection-start-line="321" selection-start-column="67" selection-end-line="321" selection-end-column="67" />
               <folding>
                 <element signature="e#601#615#0" expanded="true" />
@@ -67,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rateLibro.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="rateLibro.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/rateLibro.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="91" column="77" lean-forward="false" selection-start-line="91" selection-start-column="77" selection-end-line="91" selection-end-column="77" />
+            <state relative-caret-position="405">
+              <caret line="165" column="44" lean-forward="false" selection-start-line="165" selection-start-column="44" selection-end-line="165" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -216,8 +207,8 @@
         <option value="$PROJECT_DIR$/templates/escritores.html" />
         <option value="$PROJECT_DIR$/templates/libros.html" />
         <option value="$PROJECT_DIR$/templates/main.html" />
-        <option value="$PROJECT_DIR$/templates/rateLibro.html" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/templates/rateLibro.html" />
       </list>
     </option>
   </component>
@@ -1008,17 +999,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/rateLibro.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="91" column="77" lean-forward="false" selection-start-line="91" selection-start-column="77" selection-end-line="91" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="-611">
           <caret line="321" column="67" lean-forward="false" selection-start-line="321" selection-start-column="67" selection-end-line="321" selection-end-column="67" />
           <folding>
             <element signature="e#601#615#0" expanded="true" />
@@ -1031,6 +1014,14 @@
             <element signature="e#12128#12970#0" expanded="false" />
             <element signature="e#14402#14826#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/rateLibro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="165" column="44" lean-forward="false" selection-start-line="165" selection-start-column="44" selection-end-line="165" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
