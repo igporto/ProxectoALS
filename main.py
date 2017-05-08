@@ -314,14 +314,29 @@ class editComentarioHandler(webapp2.RequestHandler):
         id_Comentario = self.request.get("id")
         comentario = Comentario.query(Comentario.key == ndb.Key(Comentario, int(id_Comentario))).get()
         id_Libro = comentario.libro.id()
+        libro = Libro.query(Libro.key == ndb.Key(Libro, id_Libro)).get()
 
-        print(id_Libro)
+        numComentarios = Comentario.query(Comentario.libro == ndb.Key(Libro, int(id_Libro))).count()
+        valoracionMedia = ((libro.valoracion * numComentarios) - comentario.valoracion)
+
+        print("SACANDOO"+str(valoracionMedia)+" NV: "+self.request.get("valoracion"))
 
         texto = self.request.get("comentario")
         comentario.texto = texto
         comentario.valoracion = int(self.request.get("valoracion"))
+        if(numComentarios>1):
+            valoracionMedia = ((valoracionMedia * (numComentarios-1)) + int(self.request.get("valoracion")))
+        else:
+            valoracionMedia = self.request.get("valoracion")
 
+        print("METENDOO" + str(valoracionMedia / numComentarios))
         comentario.put()
+        time.sleep(1)
+
+        libro.valoracion = round(valoracionMedia / numComentarios, 2)
+
+
+        libro.put()
         time.sleep(1)
 
         self.redirect("/rateLibro?id="+str(id_Libro))
