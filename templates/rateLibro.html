@@ -55,9 +55,7 @@
                                     <i class="fa fa-star fa-stack-2x"></i>
                                     <strong class="fa-stack-1x fa-stack-text fa-inverse">{{ comentario.valoracion }}</strong>
                                 </span>
-
                                 {{ comentario.data.date() }}
-                            {% endif %}
                             {% if usuarioActual == usu.id_user %}
                             <button type="button" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editComentario{{comentario.key.id()}}">
                                 <i class="fa fa-fw fa-edit"></i>
@@ -79,10 +77,22 @@
                                     </div>
                                     <div class="modal-body">
                                         <form role="form" action="/editComentario" method="post">
-                                            <input type="hidden" name="id" value="{{comentario.key.id()}}"/>
+                                            <input type="hidden" name="id" required value="{{comentario.key.id()}}"/>
                                             <label>Comentario</label>
                                             <div class="form-group">
                                                 <textarea name="comentario"  rows="4" cols="40">{{ comentario.texto }}</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Valoración</label>
+                                                <select name="valoracion">
+                                                    {% for i in range(1,6,1)%}
+                                                    {% if comentario.valoracion == i%}
+                                                        <option selected value="{{i}}">{{ i }}</option>
+                                                    {% else%}
+                                                        <option value="{{i}}">{{ i }}</option>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </select>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-fw fa-arrow-left"></i></button>
@@ -116,6 +126,7 @@
                             </div>
                         </div>
                         {% endif %}
+                    {% endif %}
                     {% endfor%}
                 </div>
 
@@ -133,13 +144,10 @@
 
                     <label>Comentario</label>
                     <div class="form-group">
-                        <textarea name="comentario" id="editor1" rows="4" cols="40">
-
-                        </textarea>
+                        <textarea name="comentario" id="editor1" rows="4" cols="40" required="required"></textarea>
                     </div>
                     <div class="form-group">
-
-                        <button class="btn btn-lg btn-success align-left" type="submit" name="enviar"">Comentar</button>
+                        <button class="btn btn-lg btn-success align-left" type="submit" name="enviar">Comentar</button>
                     </div>
                 </div>
                 <div class="col-lg-1 ">
@@ -151,8 +159,11 @@
                             <i class="fa fa-star fa-stack-2x yellow"></i>
                             <strong class="fa-stack-1x fa-stack-text fa-inverse"></strong>
                         </span>
-                        <input name="valoracion" type="number" class="rating" min=1 max=5 step=1 data-size="lg" data-rtl="true" value="5">
-                         <p>1 - 5</p>
+                        <select name="valoracion" required>
+                            {% for i in range(1,6,1)%}
+                            <option>{{ i }}</option>
+                            {% endfor %}
+                        </select>
                      </div>
                 </div>
             </form>

@@ -38,6 +38,7 @@ class Escritor(ndb.Model):
     apelidos = ndb.StringProperty(required=True)
     webPersoal = ndb.StringProperty(required=True)
     wiki = ndb.StringProperty(required=True)
+    usuario = ndb.KeyProperty(kind=User)
 
 class Libro(ndb.Model):
     titulo = ndb.StringProperty(required=True)
@@ -46,6 +47,7 @@ class Libro(ndb.Model):
     autor = ndb.KeyProperty(kind=Escritor)
     portada = ndb.BlobProperty(required=True)
     valoracion = ndb.FloatProperty(default=0)
+    usuario = ndb.KeyProperty(kind=User)
 
 
 class Comentario(ndb.Model):
@@ -101,6 +103,7 @@ class LibrosHandler(webapp2.RequestHandler):
                       "add": add,
                       "delete": delete,
                       "usuario": user.nickname(),
+                      "user": user,
                       "user_logout": users.create_logout_url("/")
                       }
 
@@ -143,8 +146,10 @@ class AddLibroHandler(webapp2.RequestHandler):
             if libros.count() == 0:
                 xenero = self.request.get("xenero")
                 sinopse = self.request.get("sinopse")
+                usuario = users.get_current_user().user_id()
+                print("USER"+str(usuario))
 
-                libro = Libro(titulo=titulo, xenero=xenero, sinopse=sinopse, autor=autor_key, portada=image_file)
+                libro = Libro(titulo=titulo, xenero=xenero, sinopse=sinopse, autor=autor_key, portada=image_file, usuario = ndb.Key(User,usuario))
                 libro.put()
                 time.sleep(1)
 
@@ -180,21 +185,27 @@ class EditLibroHandler(webapp2.RequestHandler):
             self.response.write(template.render(labels))
 
     def post(self):
-        libro_key = ndb.Key(Libro, int(self.request.get("id")))
-        libro = Libro.query(Libro.key == libro_key).get()
+        id_autor = self.request.get("autor")
+        titulo = self.request.get("titulo")
+        autor_key = ndb.Key(Escritor, id_autor)
 
-        libro.titulo = self.request.get("titulo").capitalize()
-        libro.xenero = self.request.get("xenero")
-        libro.sinopse = self.request.get("sinopse")
-        libro.autor = ndb.Key(Escritor, int(self.request.get("autor")))
+        libros = Libro.query(Libro.titulo == titulo, Libro.autor == autor_key)
+        if libros.count() == 0:
+            libro_key = ndb.Key(Libro, int(self.request.get("id")))
+            libro = Libro.query(Libro.key == libro_key).get()
 
-        if(self.request.get("portada")!=""):
-            # Store the added image
-            image_file = self.request.get("portada", None)
-            libro.portada = image_file
+            libro.titulo = self.request.get("titulo").capitalize()
+            libro.xenero = self.request.get("xenero")
+            libro.sinopse = self.request.get("sinopse")
+            libro.autor = ndb.Key(Escritor, int(self.request.get("autor")))
 
-        libro.put()
-        time.sleep(1)
+            if(self.request.get("portada")!=""):
+                # Store the added image
+                image_file = self.request.get("portada", None)
+                libro.portada = image_file
+
+            libro.put()
+            time.sleep(1)
 
         self.redirect("/libros")
 
@@ -218,7 +229,8 @@ class AddComentarioHandler(webapp2.RequestHandler):
     def post(self):
 
         id_Libro = self.request.get("id")
-        texto = str(self.request.get("comentario"))
+        print("ID:"+str(id_Libro))
+        texto = self.request.get("comentario")
         valoracion = int(self.request.get("valoracion"))
         data = datetime.datetime.today()
         id_Usuario = users.get_current_user().user_id()
@@ -227,7 +239,7 @@ class AddComentarioHandler(webapp2.RequestHandler):
 
         comentario = Comentario(texto=texto,
                                 usuario=ndb.Key(User, id_Usuario),
-                                libro=ndb.Key(Libro, int(id_Libro)),
+                                libro=libro_key,
                                 valoracion=valoracion,
                                 data=data)
 
@@ -247,11 +259,11 @@ class AddComentarioHandler(webapp2.RequestHandler):
         if user:
             id_Libro = self.request.get("id")
             libro = Libro.query(Libro.key == ndb.Key(Libro, int(id_Libro))).get()
-            comentarios = Comentario.query().order(Comentario.data)
+            comentarios = Comentario.query(Comentario.libro == ndb.Key(Libro, int(id_Libro)))
             escritor = Escritor.query(Escritor.key == libro.autor).get()
 
+            print(comentarios.count())
             user = users.get_current_user()
-            ("USUARIO: " + str(user))
             usuarios = User.query()
             values = {"libro": libro,
                       "escritor": escritor,
@@ -307,6 +319,7 @@ class editComentarioHandler(webapp2.RequestHandler):
 
         texto = self.request.get("comentario")
         comentario.texto = texto
+        comentario.valoracion = int(self.request.get("valoracion"))
 
         comentario.put()
         time.sleep(1)
@@ -325,6 +338,7 @@ class escritoresHandler(webapp2.RequestHandler):
             values = {
                 "usuario": user.nickname(),
                 'escritores': escritores,
+                "user":user,
                 "add":add,
                 "delete":delete,
                 "user_logout": users.create_logout_url("/")
@@ -368,8 +382,9 @@ class AddEscritorHandler(webapp2.RequestHandler):
         if escritores.count() == 0:
             webPersoal = self.request.get("web")
             wiki = self.request.get("wiki")
+            usuario = users.get_current_user().user_id()
 
-            escritor = Escritor(nome=nome, apelidos=apelidos, webPersoal=webPersoal, wiki=wiki)
+            escritor = Escritor(nome=nome, apelidos=apelidos, webPersoal=webPersoal, wiki=wiki, usuario= ndb.Key(User,usuario))
             escritor.put()
             time.sleep(1)
 
@@ -421,16 +436,23 @@ class EditEscritorHandler(webapp2.RequestHandler):
             self.response.write(template.render(labels))
 
     def post(self):
-        escritor_key = ndb.Key(Escritor, int(self.request.get("id")))
-        escritor = Escritor.query(Escritor.key == escritor_key).get()
+        nome = self.request.get("nome")
+        apelidos = self.request.get("apelidos")
 
-        escritor.nome = self.request.get("nome").capitalize()
-        escritor.apelidos = self.request.get("apelidos")
-        escritor.webPersoal = self.request.get("web")
-        escritor.wiki = self.request.get("wiki")
+        escritores = Escritor.query(Escritor.nome == nome and Escritor.apelidos == apelidos)
 
-        escritor.put()
-        time.sleep(1)
+        if escritores.count() == 0:
+            escritor_key = ndb.Key(Escritor, int(self.request.get("id")))
+            escritor = Escritor.query(Escritor.key == escritor_key).get()
+
+            escritor.nome = self.request.get("nome")
+            escritor.apelidos = self.request.get("apelidos")
+
+            escritor.webPersoal = self.request.get("web")
+            escritor.wiki = self.request.get("wiki")
+
+            escritor.put()
+            time.sleep(1)
 
         self.redirect("/escritores")
 

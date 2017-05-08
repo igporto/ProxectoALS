@@ -23,6 +23,7 @@
     {% endif %}
     <div class="col-lg-12 col-md-8">
          <div>
+              <a href="/addEscritor"><button type="button" class="btn btn-lg btn-success">Engadir Escritor</button></a>
              <h2>ESCRITORES</h2>
             <table class="table table-hover table-striped" id="example" cellspacing="0" width="95%">
                 <thead>
@@ -41,6 +42,9 @@
                         <td>{{ escritor.nome }}</td>
                         <td>{{ escritor.webPersoal}}</td>
                         <td class="text-center">
+                            <!--MODAL!-->
+                            <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#viweEscritor{{escritor.key.id()}}"><i class="fa fa-fw fa-eye"></i></button>
+                        {% if escritor.usuario.id() == user.user_id() %}
                             <a href="/editEscritor?id={{escritor.key.id() }}">
                                 <button type="button" class="btn btn-xs btn-warning"><i class="fa fa-fw fa-edit"></i></button>
                             </a>
@@ -66,6 +70,33 @@
                                     </div>
                                 </div>
                             </div>
+                        {% else %}
+                            <a href="/editEscritor?id={{escritor.key.id() }}">
+                                <button type="button" disabled class="btn btn-xs btn-warning"><i class="fa fa-fw fa-edit"></i></button>
+                            </a>
+                            <!--MODAL!-->
+                            <button type="button" disabled class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteEscritor{{escritor.key.id()}}"><i class="fa fa-fw fa-trash"></i></button>
+                        {% endif %}
+                            <!-- Modal Ver-->
+                            <div class="modal fade" id="viweEscritor{{escritor.key.id()}}" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Datos do Escritor</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <span>Nome e Apelidos</span>: <b>{{ escritor.nome }} {{ escritor.apelidos }}</b></br>
+                                            <span>Web Persoal</span>: <b>{{ escritor.webPersoal }}</b></br>
+                                            <span>Entrada na Wikipedia</span>: <b>{{ escritor.webPersoal }}</b></br>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-fw fa-arrow-left"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 {% endfor %}
@@ -78,6 +109,6 @@
                 .removeClass( 'display' )
                 .addClass('table table-striped table-bordered');
         </script>
-        <a href="/addEscritor"><button type="button" class="btn btn-lg btn-success">Engadir Escritor</button></a>
+
     </div>
 {% endblock %}

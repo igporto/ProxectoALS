@@ -1,9 +1,10 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="gl">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -12,6 +13,8 @@
     <link href="../css/sb-admin.css" rel="stylesheet">
     <link href="../css/plugins/morris.css" rel="stylesheet">
     <link href="../js/bootstrap.min.js" rel="stylesheet">
+
+
     <script src="https://use.fontawesome.com/c3471ff440.js"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -47,6 +50,9 @@
     <div id="wrapper">
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <a class="navbar-brand" href="/">
+                <img src="/static/LogoUVigo.png" width="90px" height="43px">
+            </a>
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -55,7 +61,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">UvigoReader</a>
+
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -74,7 +80,7 @@
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-collapse">
+            <div class="navbar-collapse navbar-ex1-collapse collapse" aria-expanded="false" style="height: 1px;">
                 <ul class="nav navbar-nav side-nav">
                     <li>
                         <a href="/libros"><i class="fa fa-fw fa-book"></i> Libros</a>
@@ -119,9 +125,4 @@
 
 
 </body>
-<footer>
-    <div>
-        <p style="color: white">Contenido del pie de página</p>
-    </div>
-</footer>
 </html>
