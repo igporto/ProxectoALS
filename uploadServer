@@ -1,1 +1,2 @@
+cd /home/ivan/ProxectoALS/
 sudo python ../Descargas/google_appengine/appcfg.py -A uvigoreader update . version:1
