@@ -95,13 +95,16 @@ class LibrosHandler(webapp2.RequestHandler):
 
             add = self.request.get("add")
             delete = self.request.get("delete")
-
+            erro = self.request.get("erro")
+            ok = self.request.get("ok")
             escritores = Escritor.query()
 
             values = {'libros': libros,
                       "escritores": escritores,
                       "add": add,
                       "delete": delete,
+                      "erro": erro,
+                      "ok": ok,
                       "usuario": user.nickname(),
                       "user": user,
                       "user_logout": users.create_logout_url("/")
@@ -154,6 +157,8 @@ class AddLibroHandler(webapp2.RequestHandler):
                 time.sleep(1)
 
                 self.redirect("/libros?add=True")
+            else:
+                self.redirect("/libros?erro=True")
 
 class EditLibroHandler(webapp2.RequestHandler):
     def get(self):
@@ -165,6 +170,7 @@ class EditLibroHandler(webapp2.RequestHandler):
                 libro_key = ndb.Key(Libro, id_Libro)
                 libro = Libro.query(Libro.key == libro_key).get()
                 escritores = Escritor.query()
+
 
                 if libro:
                     values = {"libro": libro,
@@ -191,7 +197,8 @@ class EditLibroHandler(webapp2.RequestHandler):
 
         libros = Libro.query(Libro.titulo == titulo, Libro.autor == autor_key)
         if libros.count() == 0:
-            libro_key = ndb.Key(Libro, int(self.request.get("id")))
+            id_Libro = self.request.get("id")
+            libro_key = ndb.Key(Libro, int(id_Libro))
             libro = Libro.query(Libro.key == libro_key).get()
 
             libro.titulo = self.request.get("titulo").capitalize()
@@ -207,7 +214,9 @@ class EditLibroHandler(webapp2.RequestHandler):
             libro.put()
             time.sleep(1)
 
-        self.redirect("/libros")
+            self.redirect("/libros?ok=True")
+        else:
+            self.redirect("/libros?erro=True")
 
 class DeleteLibroHandler(webapp2.RequestHandler):
     def get(self):
@@ -349,12 +358,15 @@ class escritoresHandler(webapp2.RequestHandler):
 
             add = self.request.get("add")
             delete = self.request.get("delete")
-
+            erro = self.request.get("erro")
+            ok = self.request.get("ok")
             values = {
                 "usuario": user.nickname(),
                 'escritores': escritores,
                 "user":user,
                 "add":add,
+                "erro": erro,
+                "ok": ok,
                 "delete":delete,
                 "user_logout": users.create_logout_url("/")
             }
@@ -403,7 +415,9 @@ class AddEscritorHandler(webapp2.RequestHandler):
             escritor.put()
             time.sleep(1)
 
-        self.redirect("/escritores?add=True")
+            self.redirect("/escritores?add=True")
+        else:
+            self.redirect("/escritores?erro=True")
 
 class DeleteEscritorHandler(webapp2.RequestHandler):
     def get(self):
@@ -469,7 +483,9 @@ class EditEscritorHandler(webapp2.RequestHandler):
             escritor.put()
             time.sleep(1)
 
-        self.redirect("/escritores")
+            self.redirect("/escritores?ok=True")
+        else:
+            self.redirect("/escritores?erro=True")
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),

@@ -21,6 +21,26 @@
         </div>
     </div>
     {% endif %}
+    {% if erro %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <i class="fa fa-info-circle"></i> <strong>Produciuse algún erro na operación anterior!!</strong>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if ok  %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <i class="fa fa-info-circle"></i>  <strong>Datos Actualizados Correctamente!!</strong>
+            </div>
+        </div>
+    </div>
+    {% endif %}
     <div class="col-lg-12 col-md-8">
         {% if escritores.count() > 0 %}
             <a href="/addLibro"><button type="button" class="btn btn-lg btn-success">Engadir Libro</button></a>
