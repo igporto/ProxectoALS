@@ -67,6 +67,7 @@ class MainHandler(webapp2.RequestHandler):
             user_id = user.user_id()
             name_info = user.nickname()
             stored_user = User.query(User.id_user == user_id)
+
             if stored_user.count() == 0:
                 # Store the information
                 img = User(id_user=user_id, name=name_info)
@@ -74,6 +75,7 @@ class MainHandler(webapp2.RequestHandler):
                 time.sleep(1)
 
             labels = {
+                "username": user.nickname().partition("@")[0],
                 "usuario": user.nickname(),
                 "user_logout": users.create_logout_url("/")
             }
