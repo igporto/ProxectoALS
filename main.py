@@ -143,7 +143,6 @@ class AddLibroHandler(webapp2.RequestHandler):
             id_autor = int(id_autor)
             # Store the added image
             image_file = self.request.get("portada", None)
-
             autor_key = ndb.Key(Escritor, id_autor)
             libros = Libro.query(Libro.titulo == titulo, Libro.autor == autor_key)
             if libros.count() == 0:
@@ -191,7 +190,7 @@ class EditLibroHandler(webapp2.RequestHandler):
             self.response.write(template.render(labels))
 
     def post(self):
-        id_autor = self.request.get("autor")
+        id_autor = int(self.request.get("autor"))
         titulo = self.request.get("titulo")
         autor_key = ndb.Key(Escritor, id_autor)
 
@@ -384,7 +383,6 @@ class AddEscritorHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
-            escritores = Escritor.query().order(Escritor.apelidos)
             user = users.get_current_user()
             values = {
                     "usuario": user.nickname(),
@@ -404,7 +402,7 @@ class AddEscritorHandler(webapp2.RequestHandler):
     def post(self):
         nome = self.request.get("nome")
         apelidos = self.request.get("apelidos")
-        escritores = Escritor.query(Escritor.nome == nome and Escritor.apelidos == apelidos)
+        escritores = Escritor.query(Escritor.nome == nome, Escritor.apelidos == apelidos)
 
         if escritores.count() == 0:
             webPersoal = self.request.get("web")
