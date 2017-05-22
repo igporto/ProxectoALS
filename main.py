@@ -337,9 +337,8 @@ class editComentarioHandler(webapp2.RequestHandler):
         if(numComentarios>1):
             valoracionMedia = ((valoracionMedia * (numComentarios-1)) + int(self.request.get("valoracion")))
         else:
-            valoracionMedia = self.request.get("valoracion")
+            valoracionMedia = int(self.request.get("valoracion"))
 
-        print("METENDOO" + str(valoracionMedia / numComentarios))
         comentario.put()
         time.sleep(1)
 

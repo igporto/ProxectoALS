@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b5605d4-177c-48c7-bef6-d1640ef607c2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uvigoReader.datastore" afterPath="$PROJECT_DIR$/uvigoReader.datastore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/inicio.html" afterPath="$PROJECT_DIR$/templates/inicio.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,18 +30,17 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+            <state relative-caret-position="262">
+              <caret line="339" column="65" lean-forward="false" selection-start-line="339" selection-start-column="65" selection-end-line="339" selection-end-column="65" />
               <folding>
                 <element signature="e#601#615#0" expanded="true" />
                 <element signature="e#8174#8597#0" expanded="false" />
                 <element signature="e#8655#11035#0" expanded="false" />
                 <element signature="e#11096#11925#0" expanded="false" />
-                <element signature="e#11984#13187#0" expanded="false" />
-                <element signature="e#15654#16078#0" expanded="false" />
+                <element signature="e#15593#16017#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -49,7 +49,7 @@
       <file leaf-file-name="Libro_ADD.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/Libro_ADD.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
+            <state relative-caret-position="810">
               <caret line="45" column="86" lean-forward="false" selection-start-line="45" selection-start-column="86" selection-end-line="45" selection-end-column="86" />
               <folding />
             </state>
@@ -71,7 +71,7 @@
       <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-864">
+            <state relative-caret-position="378">
               <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -80,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inicio.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="inicio.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/inicio.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -115,7 +115,7 @@
       <file leaf-file-name="Libro_EDIT.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/Libro_EDIT.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="745">
+            <state relative-caret-position="1098">
               <caret line="61" column="101" lean-forward="false" selection-start-line="61" selection-start-column="101" selection-end-line="61" selection-end-column="101" />
               <folding>
                 <element signature="n#src#0;n#img#0;n#div#0;n#div#1;n#!!top" expanded="true" />
@@ -194,8 +194,8 @@
         <option value="$PROJECT_DIR$/templates/escritores.html" />
         <option value="$PROJECT_DIR$/templates/Libro_EDIT.html" />
         <option value="$PROJECT_DIR$/templates/rateLibro.html" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/templates/inicio.html" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -208,8 +208,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="52" />
     <option name="y" value="-11" />
-    <option name="width" value="1315" />
-    <option name="height" value="780" />
+    <option name="width" value="1869" />
+    <option name="height" value="1092" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -226,7 +226,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -284,6 +283,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -580,10 +580,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="52" y="-11" width="1315" height="780" extended-state="6" />
+    <frame x="52" y="-11" width="1869" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2086824" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20835565" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20897833" sideWeight="0.50276244" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294893" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -682,8 +682,7 @@
             <element signature="e#8174#8597#0" expanded="false" />
             <element signature="e#8655#11035#0" expanded="false" />
             <element signature="e#11096#11925#0" expanded="false" />
-            <element signature="e#11984#13187#0" expanded="false" />
-            <element signature="e#15654#16078#0" expanded="false" />
+            <element signature="e#15593#16017#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -741,8 +740,7 @@
             <element signature="e#8174#8597#0" expanded="false" />
             <element signature="e#8655#11035#0" expanded="false" />
             <element signature="e#11096#11925#0" expanded="false" />
-            <element signature="e#11984#13187#0" expanded="false" />
-            <element signature="e#15654#16078#0" expanded="false" />
+            <element signature="e#15593#16017#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -951,7 +949,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Libro_EDIT.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="745">
+        <state relative-caret-position="1098">
           <caret line="61" column="101" lean-forward="false" selection-start-line="61" selection-start-column="101" selection-end-line="61" selection-end-column="101" />
           <folding>
             <element signature="n#src#0;n#img#0;n#div#0;n#div#1;n#!!top" expanded="true" />
@@ -961,7 +959,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-864">
+        <state relative-caret-position="378">
           <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
           <folding>
             <element signature="n#style#0;n#div#1;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -969,24 +967,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding>
-            <element signature="e#601#615#0" expanded="true" />
-            <element signature="e#8174#8597#0" expanded="false" />
-            <element signature="e#8655#11035#0" expanded="false" />
-            <element signature="e#11096#11925#0" expanded="false" />
-            <element signature="e#11984#13187#0" expanded="false" />
-            <element signature="e#15654#16078#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Libro_ADD.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
+        <state relative-caret-position="810">
           <caret line="45" column="86" lean-forward="false" selection-start-line="45" selection-start-column="86" selection-end-line="45" selection-end-column="86" />
           <folding />
         </state>
@@ -995,8 +978,22 @@
     <entry file="file://$PROJECT_DIR$/templates/inicio.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="339" column="65" lean-forward="false" selection-start-line="339" selection-start-column="65" selection-end-line="339" selection-end-column="65" />
+          <folding>
+            <element signature="e#601#615#0" expanded="true" />
+            <element signature="e#8174#8597#0" expanded="false" />
+            <element signature="e#8655#11035#0" expanded="false" />
+            <element signature="e#11096#11925#0" expanded="false" />
+            <element signature="e#15593#16017#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
